@@ -23,28 +23,36 @@ Page({
       this.navigateToNext();
     }
     
-    // 移除自动显示测试登录的逻辑
+    // 获取系统信息检测平台
+    const systemInfo = wx.getSystemInfoSync();
+    console.log("系统信息:", systemInfo);
+    console.log("平台:", systemInfo.platform);
+    
+    // 确保开发环境标识正确设置
+    const isInDevTools = systemInfo.platform === 'devtools';
+    
+    // 更新页面数据
     this.setData({
-      showMultiUserLogin: false  // 默认隐藏测试登录入口
+      isDevEnv: isInDevTools || app.globalData.isDevEnv,
+      showMultiUserLogin: isInDevTools // 在开发工具中自动显示测试登录选项
     });
     
-    // 可选：添加条件判断显示测试入口
-    const systemInfo = wx.getSystemInfoSync();
-    if (systemInfo.platform === 'devtools') {
-      this.setData({
-        showMultiUserLogin: true
-      });
-    }
+    console.log("环境变量:", {
+      isDevEnv: this.data.isDevEnv,
+      showMultiUserLogin: this.data.showMultiUserLogin,
+      globalIsDevEnv: app.globalData.isDevEnv
+    });
   },
 
   // 模拟登录（仅开发环境使用）
   mockLogin: function() {
-    if (!this.data.isDevEnv) return;
+    console.log('进入模拟登录函数');
     
-    // 显示多用户登录面板
+    // 显示多用户登录面板（不加环境检查，确保可以切换）
     this.setData({
       showMultiUserLogin: true
     });
+    console.log('显示测试用户面板:', this.data.showMultiUserLogin);
   },
   
   // 选择测试用户登录
@@ -430,4 +438,4 @@ Page({
       duration: 2000
     });
   }
-}) 
+})

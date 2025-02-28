@@ -14,6 +14,14 @@
       微信一键登录
     </button>
     
+    <!-- 添加测试模式切换按钮 -->
+    <button 
+      class="test-mode-btn" 
+      bindtap="mockLogin"
+      wx:if="{{isDevEnv}}">
+      显示测试用户
+    </button>
+    
     <view class="login-tips">
       <text>登录即表示您同意</text>
       <text class="link">《用户协议》</text>
@@ -28,7 +36,21 @@
       <text>测试账号登录</text>
     </view>
     <view class="test-users">
-      <!-- 测试用户列表 -->
+      <block wx:for="{{testUsers}}" wx:key="index">
+        <view class="test-user" data-index="{{index}}" bindtap="selectTestUser">
+          <view class="avatar-placeholder">{{item.name[0]}}</view>
+          <text class="name">{{item.name}}</text>
+        </view>
+      </block>
     </view>
   </view>
-</view> 
+  
+  <!-- 添加调试信息帮助排查 -->
+  <view class="debug-info" wx:if="{{isDevEnv}}">
+    <view>showMultiUserLogin: {{showMultiUserLogin ? 'true' : 'false'}}</view>
+    <view>testUsers长度: {{testUsers.length}}</view>
+    <view wx:for="{{testUsers}}" wx:key="index">
+      用户{{index+1}}: {{item.name}}
+    </view>
+  </view>
+</view>
