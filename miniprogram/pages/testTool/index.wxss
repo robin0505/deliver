@@ -1,0 +1,409 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 30rpx;
+  box-sizing: border-box;
+  background-color: #f8f8f8;
+}
+
+.header {
+  margin-bottom: 30rpx;
+}
+
+.title {
+  font-size: 42rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 20rpx;
+}
+
+.section-subtitle {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #666;
+  margin: 20rpx 0 15rpx;
+  padding-left: 15rpx;
+  border-left: 6rpx solid #1aad19;
+  line-height: 1.2;
+}
+
+/* 错误提示样式 */
+.error-notice {
+  display: flex;
+  align-items: center;
+  background-color: #fff1f0;
+  border: 1px solid #ffa39e;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  margin-bottom: 30rpx;
+}
+
+.error-icon {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: #ff4d4f;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.error-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.error-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #cf1322;
+  margin-bottom: 8rpx;
+}
+
+.error-message {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.error-action {
+  font-size: 24rpx;
+  padding: 8rpx 20rpx;
+  background-color: #ff4d4f;
+  color: #fff;
+  border-radius: 6rpx;
+  margin-left: 20rpx;
+  white-space: nowrap;
+  height: auto;
+  line-height: 1.5;
+  flex-shrink: 0;
+}
+
+.error-action::after {
+  border: none;
+}
+
+/* 开发者信息区域 */
+.info-section {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+  font-size: 28rpx;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-label {
+  color: #666;
+  width: 180rpx;
+  flex-shrink: 0;
+}
+
+.info-value {
+  color: #333;
+  font-weight: 500;
+  flex: 1;
+  word-break: break-all;
+}
+
+.copy-btn {
+  font-size: 24rpx;
+  color: #1aad19;
+  background: #f0f9eb;
+  padding: 4rpx 16rpx;
+  border-radius: 30rpx;
+  margin-left: 16rpx;
+}
+
+/* 工具区域 */
+.tool-section {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.tool-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.tool-group.horizontal {
+  flex-direction: row;
+  align-items: center;
+}
+
+.tool-btn {
+  background-color: #f2f2f2;
+  color: #444;
+  font-size: 30rpx;
+  padding: 20rpx 0;
+  box-shadow: none;
+  border: none;
+  border-radius: 8rpx;
+}
+
+.tool-btn.primary {
+  background-color: #09bb07;
+  color: #fff;
+  flex: 1;
+}
+
+.tool-btn.warning {
+  background-color: #ff9800;
+  color: #fff;
+}
+
+.tool-btn::after {
+  border: none;
+}
+
+.tool-btn[disabled] {
+  opacity: 0.6;
+}
+
+.count-input {
+  display: flex;
+  align-items: center;
+  background-color: #f8f8f8;
+  border-radius: 8rpx;
+  padding: 0 20rpx;
+  margin-left: 20rpx;
+  height: 84rpx;
+}
+
+.count-input input {
+  width: 80rpx;
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.count-input text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.action-section {
+  margin-bottom: 30rpx;
+}
+
+.nav-btn {
+  background-color: #1684fc;
+  color: #fff;
+  font-size: 30rpx;
+  padding: 20rpx 0;
+  box-shadow: none;
+  border: none;
+  border-radius: 8rpx;
+}
+
+.nav-btn::after {
+  border: none;
+}
+
+/* 系统信息面板 */
+.system-info-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 600rpx;
+  max-height: 80vh;
+  background-color: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 30rpx;
+  border-bottom: 1rpx solid #e8e8e8;
+}
+
+.panel-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.close-btn {
+  font-size: 36rpx;
+  color: #999;
+  line-height: 1;
+  padding: 10rpx;
+}
+
+.panel-content {
+  flex: 1;
+  padding: 20rpx 30rpx;
+  max-height: 60vh;
+}
+
+.info-group {
+  margin-bottom: 30rpx;
+}
+
+.group-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 16rpx;
+  display: block;
+  padding-bottom: 8rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 12rpx;
+  font-size: 26rpx;
+}
+
+.info-key {
+  color: #666;
+  width: 160rpx;
+  flex-shrink: 0;
+}
+
+.info-val {
+  color: #333;
+  flex: 1;
+  word-break: break-all;
+}
+
+.no-info {
+  text-align: center;
+  color: #999;
+  padding: 30rpx 0;
+}
+
+/* 日志区域 */
+.log-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.clear-log {
+  font-size: 26rpx;
+  color: #1684fc;
+}
+
+.log-container {
+  flex: 1;
+  border-radius: 8rpx;
+  background-color: #f8f8f8;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.log-item {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+  font-family: monospace;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+.log-item.error {
+  color: #cf1322;
+}
+
+.log-item.success {
+  color: #52c41a;
+}
+
+.empty-log {
+  font-size: 28rpx;
+  color: #999;
+  text-align: center;
+  padding: 30rpx;
+}
+
+.tip-section {
+  margin-bottom: 30rpx;
+}
+
+.tip-text {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 1.6;
+}
+
+.loading-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loading-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 20rpx;
+  border: 4rpx solid #f3f3f3;
+  border-top: 4rpx solid #1aad19;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} 

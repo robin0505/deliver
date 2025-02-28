@@ -1,0 +1,103 @@
+<view class="container">
+  <form bindsubmit="submitOrder">
+    <view class="form-section">
+      <view class="section-title">订单类型</view>
+      <view class="platform-selector">
+        <view class="platform-item {{platform === 'express' ? 'active' : ''}}" bindtap="selectPlatform" data-type="express">
+          <image src="../../images/icons/express.png" class="platform-icon"></image>
+          <text>快递</text>
+        </view>
+        <view class="platform-item {{platform === 'food' ? 'active' : ''}}" bindtap="selectPlatform" data-type="food">
+          <image src="../../images/icons/food.png" class="platform-icon"></image>
+          <text>外卖</text>
+        </view>
+        <view class="platform-item {{platform === 'other' ? 'active' : ''}}" bindtap="selectPlatform" data-type="other">
+          <image src="../../images/icons/other.png" class="platform-icon"></image>
+          <text>其他</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-section">
+      <view class="section-title">物品信息</view>
+      <view class="form-item">
+        <view class="form-label">物品描述</view>
+        <input name="description" placeholder="简要描述物品类型和大小" value="{{description}}" bind:input="onDescriptionChange" />
+      </view>
+      <view class="form-item">
+        <view class="form-label">取件地点</view>
+        <input name="pickupLocation" placeholder="填写取件地点，如菜鸟驿站" value="{{pickupLocation}}" bind:input="onPickupLocationChange" />
+      </view>
+      <view class="form-item">
+        <view class="form-label">取件码</view>
+        <input name="pickupCode" placeholder="填写快递取件码（选填）" value="{{pickupCode}}" bind:input="onPickupCodeChange" />
+      </view>
+    </view>
+
+    <view class="form-section">
+      <view class="section-title">配送信息</view>
+      <view class="form-item">
+        <view class="form-label">宿舍楼</view>
+        <picker mode="selector" range="{{dormitoryOptions}}" bindchange="onDormitoryChange">
+          <view class="picker {{dormitory ? '' : 'placeholder'}}">
+            {{dormitory || '选择宿舍楼'}}
+          </view>
+        </picker>
+      </view>
+      <view class="form-item">
+        <view class="form-label">具体宿舍</view>
+        <input name="roomNumber" placeholder="填写具体宿舍号" value="{{roomNumber}}" bind:input="onRoomNumberChange" />
+      </view>
+    </view>
+
+    <view class="form-section">
+      <view class="section-title">订单设置</view>
+      <view class="form-item">
+        <view class="form-label">积分奖励</view>
+        <slider name="reward" min="5" max="50" step="1" value="{{reward}}" show-value bindchange="onRewardChange" activeColor="#1AAD19" />
+      </view>
+      <view class="form-item">
+        <view class="form-label">备注</view>
+        <textarea name="remarks" placeholder="添加备注信息（选填）" value="{{remarks}}" maxlength="100" bindinput="onRemarksInput" />
+        <view class="textarea-counter">{{remarksLength}}/100</view>
+      </view>
+    </view>
+
+    <view class="fee-calculator">
+      <view class="fee-item">
+        <text class="fee-label">基础配送费</text>
+        <text class="fee-value">5积分</text>
+      </view>
+      <view class="fee-item">
+        <text class="fee-label">积分奖励</text>
+        <text class="fee-value">{{reward}}积分</text>
+      </view>
+      <view class="fee-item total">
+        <text class="fee-label">合计</text>
+        <text class="fee-value">{{reward + 5}}积分</text>
+      </view>
+    </view>
+
+    <view class="agreement">
+      <checkbox-group bindchange="onAgreeChange">
+        <label>
+          <checkbox value="agree" checked="{{isAgree}}" color="#1AAD19" />
+          我已阅读并同意<text class="link" bindtap="showAgreement">《平台服务协议》</text>
+        </label>
+      </checkbox-group>
+    </view>
+
+    <!-- 开发环境下显示的调试按钮 -->
+    <view class="debug-panel" wx:if="{{isDevEnv}}">
+      <button type="default" size="mini" bindtap="debugValidateForm">手动验证表单</button>
+      <view class="debug-info">
+        <text>表单状态: {{isFormValid ? '有效' : '无效'}}</text>
+      </view>
+    </view>
+
+    <view class="btn-area">
+      <button formType="submit" class="btn-submit" disabled="{{!isFormValid}}">发布订单</button>
+      <view class="form-tips" wx:if="{{!isFormValid}}">请完整填写所有必填信息才能发布订单</view>
+    </view>
+  </form>
+</view> 

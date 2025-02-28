@@ -1,0 +1,137 @@
+<view class="container">
+  <!-- 顶部用户信息 -->
+  <view class="user-info-bar">
+    <view class="user-brief" wx:if="{{isLoggedIn}}">
+      <image class="avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}"></image>
+      <view class="greeting">
+        <text>Hi，{{userInfo.nickName || '同学'}}</text>
+        <text class="dormitory" wx:if="{{dormitory}}">{{dormitory}}</text>
+        <text class="role-badge" wx:if="{{userRole}}">{{userRoleText}}</text>
+      </view>
+    </view>
+    <navigator url="/pages/login/index" class="login-btn" wx:else>登录/注册</navigator>
+    
+    <view class="user-credit" wx:if="{{isLoggedIn}}">
+      <text>信誉值: {{creditScore}}</text>
+      <text class="{{creditScoreClass}}">{{creditScoreText}}</text>
+    </view>
+  </view>
+
+  <!-- 功能卡片区域 -->
+  <view class="card-section">
+    <view class="section-header">
+      <text class="section-title">快捷功能</text>
+    </view>
+    <view class="card-grid">
+      <navigator url="/pages/orderCreate/index" class="card-item" hover-class="card-item-hover">
+        <image src="/images/icons/publish.png" class="card-icon" mode="aspectFit"></image>
+        <text class="card-text">发布订单</text>
+      </navigator>
+      <navigator url="/pages/orderList/index" class="card-item" hover-class="card-item-hover">
+        <image src="/images/icons/take-order.png" class="card-icon" mode="aspectFit"></image>
+        <text class="card-text">接受订单</text>
+      </navigator>
+      <navigator url="/pages/historyOrder/index?type=post" class="card-item" hover-class="card-item-hover">
+        <image src="/images/icons/my-post.png" class="card-icon" mode="aspectFit"></image>
+        <text class="card-text">我的发布</text>
+      </navigator>
+      <navigator url="/pages/historyOrder/index?type=take" class="card-item" hover-class="card-item-hover">
+        <image src="/images/icons/my-take.png" class="card-icon" mode="aspectFit"></image>
+        <text class="card-text">我的接单</text>
+      </navigator>
+      <navigator url="/pages/wallet/index" class="card-item" hover-class="card-item-hover">
+        <image src="/images/icons/wallet.png" class="card-icon" mode="aspectFit"></image>
+        <text class="card-text">我的钱包</text>
+        <text class="points">{{points}}积分</text>
+      </navigator>
+      <navigator url="/pages/feedback/index" class="card-item" hover-class="card-item-hover">
+        <image src="/images/icons/feedback.png" class="card-icon" mode="aspectFit"></image>
+        <text class="card-text">反馈投诉</text>
+      </navigator>
+    </view>
+  </view>
+
+  <!-- 我的进行中订单 -->
+  <view class="card-section">
+    <view class="section-header">
+      <text class="section-title">进行中的订单</text>
+      <navigator url="/pages/historyOrder/index" class="section-more">查看全部</navigator>
+    </view>
+    
+    <view class="empty-list" wx:if="{{ongoingOrders.length === 0}}">
+      <image src="/images/empty.png" class="empty-icon" mode="aspectFit"></image>
+      <text class="empty-text">暂无进行中的订单\n试试发布或接单吧</text>
+    </view>
+    
+    <view class="order-list" wx:else>
+      <navigator url="/pages/orderDetail/index?id={{item._id}}" 
+                class="order-item" 
+                wx:for="{{ongoingOrders}}" 
+                wx:key="_id"
+                hover-class="order-item-hover">
+        <view class="order-header">
+          <view class="order-platform">{{item.platform}}</view>
+          <view class="order-status {{item.status === 'accepted' ? 'status-ongoing' : 'status-pending'}}">
+            {{item.statusText}}
+          </view>
+        </view>
+        <view class="order-content">
+          <view class="order-info">
+            <text class="order-title">{{item.description}}</text>
+            <view class="order-address">
+              <text class="pickup">{{item.pickupLocation}}</text>
+              <text class="arrow">→</text>
+              <text class="dorm">{{item.dormitory}}</text>
+            </view>
+          </view>
+          <view class="order-reward">{{item.reward}}积分</view>
+        </view>
+        <view class="order-footer">
+          <text class="order-time">{{item.createTimeFormat}}</text>
+          <view class="order-actions" wx:if="{{item.status === 'open'}}">
+            <button class="btn-cancel" bindtap="cancelOrder" data-id="{{item._id}}">取消</button>
+          </view>
+          <view class="order-actions" wx:if="{{item.status === 'accepted' && item.isMyTake}}">
+            <button class="btn-delivered" bindtap="markDelivered" data-id="{{item._id}}">标记送达</button>
+          </view>
+          <view class="order-actions" wx:if="{{item.status === 'delivered' && !item.isMyTake}}">
+            <button class="btn-confirm" bindtap="confirmOrder" data-id="{{item._id}}">确认收货</button>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+  
+  <!-- 新手指南 -->
+  <view class="card-section">
+    <view class="section-header">
+      <text class="section-title">新手指南</text>
+    </view>
+    <view class="guide-list">
+      <view class="guide-item">
+        <view class="guide-number">1</view>
+        <view class="guide-desc">发布订单，填写取货地点和送达宿舍</view>
+      </view>
+      <view class="guide-item">
+        <view class="guide-number">2</view>
+        <view class="guide-desc">接单人接单并取货送达</view>
+      </view>
+      <view class="guide-item">
+        <view class="guide-number">3</view>
+        <view class="guide-desc">确认收货后系统结算积分</view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 用户须知 -->
+  <view class="notice">
+    <text class="notice-title">用户须知</text>
+    <text class="notice-item">• 请勿发布违法、违规物品</text>
+    <text class="notice-item">• 请文明用语，礼貌沟通</text>
+    <text class="notice-item">• 如发现恶意行为，账号将被封禁</text>
+  </view>
+  
+  <view class="footer">
+    <text>校园配送小程序 © 2023</text>
+  </view>
+</view> 

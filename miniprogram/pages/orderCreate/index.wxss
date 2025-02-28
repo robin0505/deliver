@@ -1,0 +1,172 @@
+.container {
+  padding: 30rpx;
+  background-color: #f6f6f6;
+}
+
+.form-section {
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  border-left: 6rpx solid #1AAD19;
+  padding-left: 15rpx;
+}
+
+.platform-selector {
+  display: flex;
+  justify-content: space-around;
+  margin: 20rpx 0;
+}
+
+.platform-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
+  background-color: #f6f6f6;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.platform-item.active {
+  background-color: #E8F5E9;
+  border: 2rpx solid #1AAD19;
+}
+
+.platform-icon {
+  width: 70rpx;
+  height: 70rpx;
+  margin-bottom: 10rpx;
+}
+
+.form-item {
+  margin-bottom: 20rpx;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+input, .picker {
+  height: 80rpx;
+  border: 1rpx solid #ddd;
+  border-radius: 8rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  color: #333;
+  background-color: #fff;
+  line-height: 80rpx;
+}
+
+.placeholder {
+  color: #999;
+}
+
+textarea {
+  width: 100%;
+  height: 160rpx;
+  border: 1rpx solid #ddd;
+  border-radius: 8rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+.textarea-counter {
+  text-align: right;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 10rpx;
+}
+
+.fee-calculator {
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  padding: 20rpx 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.fee-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 0;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.fee-item.total {
+  border-top: 1rpx solid #eee;
+  margin-top: 10rpx;
+  padding-top: 20rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.fee-value {
+  color: #FF6347;
+}
+
+.agreement {
+  margin: 30rpx 0;
+  font-size: 26rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link {
+  color: #1AAD19;
+}
+
+.btn-area {
+  margin-top: 50rpx;
+  padding-bottom: 50rpx;
+}
+
+.btn-submit {
+  background-color: #1AAD19;
+  color: white;
+  border-radius: 45rpx;
+  font-size: 32rpx;
+  padding: 10rpx 0;
+}
+
+.btn-submit[disabled] {
+  background-color: #9ED99E !important;
+  color: white !important;
+}
+
+.debug-panel {
+  margin: 20rpx 0;
+  padding: 20rpx;
+  background-color: #f1f1f1;
+  border-radius: 10rpx;
+  border: 1px dashed #999;
+}
+
+.debug-info {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.form-tips {
+  margin-top: 20rpx;
+  color: #f56c6c;
+  font-size: 26rpx;
+  text-align: center;
+} 

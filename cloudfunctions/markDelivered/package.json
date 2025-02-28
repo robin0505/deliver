@@ -1,0 +1,15 @@
+{
+  "name": "markDelivered",
+  "version": "1.0.0",
+  "description": "标记订单已送达函数",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}
+ 

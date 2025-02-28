@@ -1,0 +1,172 @@
+.container {
+  min-height: 100vh;
+  background-color: #f6f6f6;
+  padding: 30rpx;
+}
+
+.form-section {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 20rpx;
+  border-left: 6rpx solid #07c160;
+  padding-left: 15rpx;
+}
+
+.form-item {
+  margin-bottom: 20rpx;
+}
+
+.label {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+/* 反馈类型选择 */
+.feedback-types {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.type-item {
+  width: 33.33%;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+
+.type-btn {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  background-color: #f6f6f6;
+  border-radius: 6rpx;
+}
+
+.type-btn.active {
+  color: #fff;
+  background-color: #07c160;
+}
+
+/* 文本框 */
+.textarea-container {
+  position: relative;
+}
+
+textarea {
+  width: 100%;
+  height: 300rpx;
+  padding: 20rpx;
+  background-color: #f6f6f6;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: #333;
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+
+.word-count {
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 图片上传 */
+.upload-section {
+  margin-top: 20rpx;
+}
+
+.img-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10rpx;
+}
+
+.img-item, .upload-btn {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 10rpx;
+  position: relative;
+}
+
+.img-item image {
+  width: 100%;
+  height: 100%;
+  border-radius: 8rpx;
+}
+
+.delete-icon {
+  position: absolute;
+  top: -15rpx;
+  right: -15rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background-color: #ff5001;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-btn {
+  border: 2rpx dashed #ddd;
+  border-radius: 8rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-icon {
+  font-size: 60rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.upload-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 联系方式 */
+input {
+  width: 100%;
+  height: 80rpx;
+  padding: 0 20rpx;
+  background-color: #f6f6f6;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: #333;
+  box-sizing: border-box;
+}
+
+/* 提交按钮 */
+.btn-submit {
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  background-color: #07c160;
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 45rpx;
+  margin-top: 60rpx;
+}
+
+.btn-submit[disabled] {
+  background-color: #9ed99e !important;
+  color: #fff !important;
+} 

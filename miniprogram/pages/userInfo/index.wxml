@@ -1,0 +1,69 @@
+<view class="container">
+  <form bindsubmit="saveUserInfo">
+    <!-- 头像修改区域 -->
+    <view class="avatar-section">
+      <image class="avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <button class="btn-update-avatar" bindtap="chooseAvatar">更换头像</button>
+    </view>
+    
+    <!-- 信息表单 -->
+    <view class="form-section">
+      <view class="form-title">基本信息</view>
+      
+      <view class="form-item">
+        <view class="label">昵称</view>
+        <input name="nickName" class="input" value="{{userInfo.nickName}}" placeholder="请输入昵称" />
+      </view>
+      
+      <view class="form-item">
+        <view class="label">手机号</view>
+        <view class="phone-row">
+          <input name="phone" class="input" value="{{userData.phone}}" placeholder="请输入手机号" type="number" maxlength="11" />
+          <button class="btn-verify" wx:if="{{!userData.phone}}" bindtap="verifyPhone">验证</button>
+        </view>
+      </view>
+    </view>
+    
+    <view class="form-section">
+      <view class="form-title">收货地址</view>
+      
+      <view class="form-item">
+        <view class="label">宿舍楼</view>
+        <picker mode="selector" range="{{dormitoryOptions}}" value="{{dormitoryIndex}}" bindchange="dormitoryChange">
+          <view class="picker {{userData.dormitory ? '' : 'placeholder'}}">
+            {{userData.dormitory ? userData.dormitory.split(' ')[0] : '请选择宿舍楼'}}
+          </view>
+        </picker>
+      </view>
+      
+      <view class="form-item">
+        <view class="label">宿舍号</view>
+        <input name="roomNumber" class="input" value="{{roomNumber}}" placeholder="请输入宿舍号" type="number" />
+      </view>
+      
+      <view class="form-item">
+        <view class="label">详细地址</view>
+        <textarea name="addressDetail" class="textarea" value="{{userData.addressDetail}}" placeholder="请输入详细地址信息（选填）"></textarea>
+      </view>
+    </view>
+    
+    <view class="form-section">
+      <view class="form-title">其他信息</view>
+      
+      <view class="form-item">
+        <view class="label">信用评分</view>
+        <view class="credit-score">{{userData.credit || 100}}</view>
+      </view>
+      
+      <view class="form-item">
+        <view class="label">注册时间</view>
+        <view class="signup-time">{{userData.signupTime || '未知'}}</view>
+      </view>
+    </view>
+    
+    <!-- 保存按钮 -->
+    <view class="btn-area">
+      <button formType="submit" class="btn-save">保存信息</button>
+    </view>
+  </form>
+</view> 

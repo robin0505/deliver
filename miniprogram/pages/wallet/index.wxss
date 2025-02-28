@@ -1,0 +1,156 @@
+.container {
+  min-height: 100vh;
+  background-color: #f6f6f6;
+  padding-bottom: 40rpx;
+}
+
+/* 余额卡片 */
+.balance-card {
+  background-color: #07c160;
+  padding: 40rpx 30rpx;
+  color: #fff;
+  margin-bottom: 24rpx;
+}
+
+.balance-title {
+  font-size: 28rpx;
+  opacity: 0.9;
+  margin-bottom: 20rpx;
+}
+
+.balance-amount {
+  font-size: 60rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-btn {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  width: 45%;
+  padding: 16rpx 0;
+  text-align: center;
+}
+
+/* 交易记录 */
+.transaction-section {
+  background-color: #fff;
+}
+
+.section-header {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.filter-btn {
+  font-size: 26rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.filter-btn::after {
+  content: '';
+  width: 12rpx;
+  height: 12rpx;
+  border-right: 2rpx solid #999;
+  border-bottom: 2rpx solid #999;
+  transform: rotate(45deg);
+  margin-left: 10rpx;
+}
+
+/* 交易列表 */
+.transaction-list {
+  max-height: calc(100vh - 350rpx);
+}
+
+.transaction-item {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  display: flex;
+  align-items: center;
+}
+
+.transaction-icon {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #f0f9eb;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  color: #07c160;
+}
+
+.transaction-icon.out {
+  background-color: #fff5f5;
+  color: #ff5001;
+}
+
+.transaction-info {
+  flex: 1;
+}
+
+.transaction-name {
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.transaction-time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.transaction-amount {
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.amount-in {
+  color: #07c160;
+}
+
+.amount-out {
+  color: #ff5001;
+}
+
+/* 空状态 */
+.empty-container {
+  padding: 100rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-icon {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 30rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+  text-align: center;
+} 

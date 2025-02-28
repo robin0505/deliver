@@ -1,0 +1,62 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/orderList/index",
+    "pages/orderCreate/index",
+    "pages/orderDetail/index",
+    "pages/user/index",
+    "pages/login/index",
+    "pages/userInfo/index",
+    "pages/wallet/index",
+    "pages/historyOrder/index",
+    "pages/feedback/index",
+    "pages/testTool/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1AAD19",
+    "navigationBarTitleText": "校园代取",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "color": "#A2A9B0",
+    "selectedColor": "#1AAD19",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/orderList/index",
+        "text": "订单广场",
+        "iconPath": "images/icons/order-list.png",
+        "selectedIconPath": "images/icons/order-list-active.png"
+      },
+      {
+        "pagePath": "pages/orderCreate/index",
+        "text": "发布订单",
+        "iconPath": "images/icons/order-create.png",
+        "selectedIconPath": "images/icons/order-create-active.png"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "text": "我的",
+        "iconPath": "images/icons/user.png",
+        "selectedIconPath": "images/icons/user-active.png"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于确定取件和配送位置"
+    }
+  }
+}

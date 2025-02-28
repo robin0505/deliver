@@ -1,0 +1,106 @@
+<view class="container">
+  <!-- 未登录状态 -->
+  <view class="not-login" wx:if="{{!isLoggedIn}}">
+    <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+    <view class="tip">登录后使用完整功能</view>
+    <button class="btn-login" bindtap="goToLogin">立即登录</button>
+  </view>
+
+  <!-- 已登录状态 -->
+  <block wx:else>
+    <!-- 用户信息卡片 -->
+    <view class="user-card">
+      <view class="user-info">
+        <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+        <view class="info">
+          <text class="nickname">{{userInfo.nickName}}</text>
+          <view class="credit">
+            <text class="label">信用分</text>
+            <text class="value">{{userData.credit || 100}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="edit-btn" bindtap="goToUserInfo">
+        <text class="edit-text">编辑资料</text>
+        <view class="arrow"></view>
+      </view>
+    </view>
+
+    <!-- 我的钱包 -->
+    <view class="wallet-card">
+      <view class="wallet-header">
+        <text class="title">我的钱包</text>
+      </view>
+      <view class="wallet-content">
+        <view class="balance">
+          <text class="balance-text">积分余额</text>
+          <text class="balance-value">{{userData.balance || 0}}</text>
+        </view>
+        <view class="wallet-btns">
+          <button class="btn" bindtap="goToWallet">积分明细</button>
+          <button class="btn btn-primary" bindtap="goToRecharge">充值</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 我的订单 -->
+    <view class="order-section">
+      <view class="section-header">
+        <text class="title">我的订单</text>
+        <view class="more" bindtap="goToHistoryOrder">
+          <text>全部订单</text>
+          <view class="arrow"></view>
+        </view>
+      </view>
+      <view class="grid-menu">
+        <view class="grid-item" bindtap="goToOngoingOrders" data-type="published">
+          <view class="icon icon-publish"></view>
+          <text class="label">我发布的</text>
+        </view>
+        <view class="grid-item" bindtap="goToOngoingOrders" data-type="delivered">
+          <view class="icon icon-deliver"></view>
+          <text class="label">我配送的</text>
+        </view>
+        <view class="grid-item" bindtap="goToHistoryOrder">
+          <view class="icon icon-history"></view>
+          <text class="label">历史订单</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 其他功能 -->
+    <view class="func-list">
+      <view class="func-item" bindtap="goToAddress">
+        <view class="icon icon-address"></view>
+        <text class="func-name">我的地址</text>
+        <view class="arrow"></view>
+      </view>
+      <view class="func-item" bindtap="goToFeedback">
+        <view class="icon icon-feedback"></view>
+        <text class="func-name">反馈建议</text>
+        <view class="arrow"></view>
+      </view>
+      <view class="func-item" bindtap="contactService">
+        <view class="icon icon-service"></view>
+        <text class="func-name">联系客服</text>
+        <button class="transparent-btn" open-type="contact">联系客服</button>
+        <view class="arrow"></view>
+      </view>
+      <view class="func-item" bindtap="goToAbout">
+        <view class="icon icon-about"></view>
+        <text class="func-name">关于我们</text>
+        <view class="arrow"></view>
+      </view>
+      
+      <!-- 开发模式下显示测试工具入口 -->
+      <view class="func-item" bindtap="goToTestTool" wx:if="{{isDevMode}}">
+        <view class="icon icon-test"></view>
+        <text class="func-name">测试工具</text>
+        <view class="arrow"></view>
+      </view>
+    </view>
+
+    <!-- 退出登录 -->
+    <view class="logout-btn" bindtap="logout">退出登录</view>
+  </block>
+</view> 

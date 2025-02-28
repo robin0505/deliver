@@ -1,0 +1,91 @@
+<view class="container">
+  <!-- 选项卡 -->
+  <view class="tabs">
+    <view class="tab {{activeTab === 'published' ? 'active' : ''}}" bindtap="switchTab" data-tab="published">
+      <text>我发布的</text>
+    </view>
+    <view class="tab {{activeTab === 'delivered' ? 'active' : ''}}" bindtap="switchTab" data-tab="delivered">
+      <text>我配送的</text>
+    </view>
+  </view>
+
+  <!-- 加载中提示 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <view class="loading"></view>
+    <view class="loading-text">加载中...</view>
+  </view>
+
+  <!-- 订单列表 -->
+  <scroll-view 
+    class="order-list" 
+    scroll-y="true" 
+    bindscrolltolower="loadMoreOrders"
+    wx:if="{{!loading && orders.length > 0}}">
+    
+    <view class="order-item" wx:for="{{orders}}" wx:key="_id" bindtap="goToOrderDetail" data-id="{{item._id}}">
+      <!-- 订单状态标签 -->
+      <view class="order-status">
+        <text>{{getStatusText(item.status)}}</text>
+      </view>
+      
+      <!-- 订单内容 -->
+      <view class="order-content">
+        <!-- 平台类型和时间 -->
+        <view class="order-header">
+          <view class="platform-badge {{item.platform}}">{{item.platform === 'express' ? '快递' : (item.platform === 'food' ? '食品' : '其他')}}</view>
+          <text class="order-time">{{item.createTime}}</text>
+        </view>
+        
+        <!-- 订单信息 -->
+        <view class="order-info">
+          <text class="order-desc">{{item.description}}</text>
+          <view class="order-location">
+            <text class="pickup">取：{{item.pickupLocation}}</text>
+            <text class="deliver">送：{{item.dormitory}}</text>
+          </view>
+        </view>
+        
+        <!-- 订单金额 -->
+        <view class="order-footer">
+          <view class="order-fee">
+            <text>基础费: {{item.fee}}积分</text>
+            <text>奖励: {{item.reward}}积分</text>
+          </view>
+          <view class="total-fee">总计: {{item.fee + item.reward}}积分</view>
+        </view>
+        
+        <!-- 接单人信息 -->
+        <view class="deliverer-info" wx:if="{{activeTab === 'published' && item.delivererInfo}}">
+          <image class="avatar" src="{{item.delivererInfo.avatarUrl || '/images/default-avatar.png'}}"></image>
+          <text class="name">配送员: {{item.delivererInfo.nickName}}</text>
+        </view>
+        
+        <!-- 发布者信息 -->
+        <view class="publisher-info" wx:if="{{activeTab === 'delivered' && item.publisherInfo}}">
+          <image class="avatar" src="{{item.publisherInfo.avatarUrl || '/images/default-avatar.png'}}"></image>
+          <text class="name">发布者: {{item.publisherInfo.nickName}}</text>
+        </view>
+        
+        <!-- 完成时间 -->
+        <view class="complete-time" wx:if="{{item.status === 3 && item.completeTime}}">
+          <text>完成时间: {{item.completeTime}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 加载更多 -->
+    <view class="load-more" wx:if="{{hasMore}}">
+      <text>加载更多...</text>
+    </view>
+    
+    <view class="load-all" wx:if="{{!hasMore && orders.length > 0}}">
+      <text>已加载全部订单</text>
+    </view>
+  </scroll-view>
+
+  <!-- 无订单提示 -->
+  <view class="empty-container" wx:if="{{!loading && orders.length === 0}}">
+    <image class="empty-image" src="/images/empty.png"></image>
+    <text class="empty-text">暂无历史订单</text>
+  </view>
+</view>

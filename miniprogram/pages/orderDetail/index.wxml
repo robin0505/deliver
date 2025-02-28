@@ -1,0 +1,156 @@
+<view class="container">
+  <!-- 加载中 -->
+  <view class="loading-container" wx:if="{{loading}}">
+    <view class="loading"></view>
+    <view class="loading-text">加载中...</view>
+  </view>
+
+  <!-- 订单不存在 -->
+  <view class="not-found" wx:if="{{!loading && !orderData}}">
+    <icon type="warn" size="64"></icon>
+    <text>订单不存在或已被删除</text>
+    <button class="btn-primary" bindtap="goBack">返回</button>
+  </view>
+
+  <!-- 订单详情内容 -->
+  <block wx:if="{{!loading && orderData}}">
+    <!-- 状态卡片 -->
+    <view class="status-card">
+      <view class="status-header">
+        <text class="status-text">{{statusText}}</text>
+        <text class="order-time">{{orderData.createTime}}</text>
+      </view>
+      <view class="countdown" wx:if="{{orderData.status === 1 && countdown}}">
+        <text>剩余接单时间: {{countdown}}</text>
+      </view>
+    </view>
+
+    <!-- 订单信息卡片 -->
+    <view class="order-card">
+      <view class="card-title">订单信息</view>
+      <view class="info-item">
+        <text class="info-label">订单号</text>
+        <text class="info-value">{{orderData._id}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">订单类型</text>
+        <text class="info-value platform">{{orderData.platform}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">物品描述</text>
+        <text class="info-value">{{orderData.description}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">取件地点</text>
+        <text class="info-value">{{orderData.pickupLocation}}</text>
+      </view>
+      <view class="info-item" wx:if="{{orderData.pickupCode}}">
+        <text class="info-label">取件码</text>
+        <text class="info-value">{{orderData.pickupCode}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">送达地点</text>
+        <text class="info-value">{{orderData.dormitory}}</text>
+      </view>
+      <view class="info-item" wx:if="{{orderData.remarks}}">
+        <text class="info-label">备注</text>
+        <text class="info-value">{{orderData.remarks}}</text>
+      </view>
+    </view>
+
+    <!-- 费用卡片 -->
+    <view class="fee-card">
+      <view class="card-title">费用信息</view>
+      <view class="info-item">
+        <text class="info-label">基础配送费</text>
+        <text class="info-value">{{orderData.fee}}积分</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">额外奖励</text>
+        <text class="info-value">{{orderData.reward}}积分</text>
+      </view>
+      <view class="info-item total">
+        <text class="info-label">总计</text>
+        <text class="info-value">{{orderData.fee + orderData.reward}}积分</text>
+      </view>
+    </view>
+
+    <!-- 用户信息卡片 -->
+    <view class="user-card">
+      <view class="card-title">{{isMyOrder ? '接单人信息' : '发布者信息'}}</view>
+      <view class="user-info" wx:if="{{userInfo}}">
+        <image class="user-avatar" src="{{userInfo.avatarUrl}}"></image>
+        <view class="user-detail">
+          <text class="user-name">{{userInfo.nickName}}</text>
+          <text class="user-credit">信用分: {{userInfo.credit || 100}}</text>
+        </view>
+        <button class="btn-contact" open-type="contact" wx:if="{{orderData.status !== 0 && orderData.status !== 3 && ((isMyOrder && orderData.delivererId) || (!isMyOrder && orderData.publisherId))}}">联系对方</button>
+      </view>
+      <view class="no-user" wx:else>
+        <text>{{orderData.status === 1 ? '暂无接单人' : '用户信息不可见'}}</text>
+      </view>
+    </view>
+
+    <!-- 时间轴 -->
+    <view class="timeline-card" wx:if="{{orderData.status !== 0 && orderData.status !== 1}}">
+      <view class="card-title">订单进度</view>
+      <view class="timeline">
+        <view class="timeline-item {{orderData.createTime ? 'active' : ''}}">
+          <view class="timeline-dot"></view>
+          <view class="timeline-content">
+            <text class="timeline-title">订单发布</text>
+            <text class="timeline-time">{{orderData.createTime}}</text>
+          </view>
+        </view>
+        
+        <view class="timeline-item {{orderData.acceptTime ? 'active' : ''}}">
+          <view class="timeline-dot"></view>
+          <view class="timeline-content">
+            <text class="timeline-title">接单</text>
+            <text class="timeline-time">{{orderData.acceptTime || '等待中'}}</text>
+          </view>
+        </view>
+        
+        <view class="timeline-item {{orderData.deliverTime ? 'active' : ''}}">
+          <view class="timeline-dot"></view>
+          <view class="timeline-content">
+            <text class="timeline-title">送达</text>
+            <text class="timeline-time">{{orderData.deliverTime || '进行中'}}</text>
+          </view>
+        </view>
+        
+        <view class="timeline-item {{orderData.completeTime ? 'active' : ''}}">
+          <view class="timeline-dot"></view>
+          <view class="timeline-content">
+            <text class="timeline-title">完成</text>
+            <text class="timeline-time">{{orderData.completeTime || '等待确认'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 操作按钮区域 -->
+    <view class="action-area">
+      <!-- 未接单状态的订单，我是发布者 -->
+      <block wx:if="{{orderData.status === 1 && isMyOrder}}">
+        <button class="btn-secondary" bindtap="cancelOrder">取消订单</button>
+      </block>
+      
+      <!-- 未接单状态的订单，我不是发布者 -->
+      <block wx:if="{{orderData.status === 1 && !isMyOrder}}">
+        <button class="btn-primary" bindtap="acceptOrder">接单</button>
+      </block>
+      
+      <!-- 已接单状态的订单，我是接单者 -->
+      <block wx:if="{{orderData.status === 2 && isDeliverer}}">
+        <button class="btn-primary" bindtap="markDelivered">已送达</button>
+      </block>
+      
+      <!-- 已送达状态的订单，我是发布者 -->
+      <block wx:if="{{orderData.status === 4 && isMyOrder}}">
+        <button class="btn-primary" bindtap="confirmOrder">确认收货</button>
+        <button class="btn-secondary" bindtap="reportIssue">有问题</button>
+      </block>
+    </view>
+  </block>
+</view> 

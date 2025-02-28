@@ -1,0 +1,267 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background-color: #f8f8f8;
+  background-image: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+}
+
+.header {
+  margin-top: 60rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 40rpx 60rpx;
+}
+
+.logo {
+  width: 160rpx;
+  height: 160rpx;
+  margin-bottom: 40rpx;
+  border-radius: 50%;
+  box-shadow: 0 10rpx 20rpx rgba(0,0,0,0.1);
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+  letter-spacing: 2rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 80rpx;
+  letter-spacing: 1rpx;
+}
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 40rpx;
+}
+
+.tip {
+  font-size: 32rpx;
+  color: #333;
+  margin-bottom: 50rpx;
+  font-weight: 500;
+  align-self: flex-start;
+  margin-left: 50rpx;
+}
+
+.login-btn {
+  width: 85%;
+  height: 96rpx;
+  background-color: #1AAD19;
+  color: white;
+  border-radius: 48rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40rpx;
+  font-size: 32rpx;
+  letter-spacing: 2rpx;
+  font-weight: 500;
+  box-shadow: 0 6rpx 16rpx rgba(26,173,25,0.3);
+  transition: all 0.3s ease;
+}
+
+.login-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 8rpx rgba(26,173,25,0.3);
+}
+
+.wechat-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: 16rpx;
+}
+
+.policy-text {
+  font-size: 24rpx;
+  color: #888;
+  margin-top: 30rpx;
+  line-height: 1.5;
+}
+
+.link {
+  color: #1AAD19;
+  font-weight: 500;
+}
+
+.verify-area {
+  width: 86%;
+  background-color: white;
+  border-radius: 24rpx;
+  padding: 40rpx 30rpx;
+  margin: 50rpx auto 0;
+  box-shadow: 0 8rpx 24rpx rgba(0,0,0,0.08);
+}
+
+.verify-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 36rpx;
+  text-align: center;
+}
+
+.verify-question {
+  font-size: 30rpx;
+  color: #444;
+  margin-bottom: 36rpx;
+  text-align: left;
+}
+
+.verify-input {
+  width: 100%;
+  height: 90rpx;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  padding: 0 30rpx;
+  margin-bottom: 36rpx;
+  font-size: 30rpx;
+  background-color: #f9f9f9;
+}
+
+.verify-btn {
+  width: 100%;
+  height: 90rpx;
+  background-color: #1AAD19;
+  color: white;
+  border-radius: 12rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: 500;
+  letter-spacing: 2rpx;
+  box-shadow: 0 6rpx 16rpx rgba(26,173,25,0.2);
+}
+
+.verify-btn:active {
+  transform: scale(0.98);
+}
+
+.footer {
+  margin-top: auto;
+  padding: 30rpx;
+  text-align: center;
+}
+
+.version {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 模拟登录按钮样式 */
+.mock-login-btn {
+  width: 85%;
+  height: 96rpx;
+  line-height: 96rpx;
+  margin: 40rpx auto;
+  background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%);
+  color: #fff;
+  border-radius: 48rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  letter-spacing: 2rpx;
+  box-shadow: 0 6rpx 16rpx rgba(255,153,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.mock-login-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 8rpx rgba(255,153,0,0.3);
+}
+
+/* 多用户测试登录面板 */
+.multi-user-login {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.multi-user-panel {
+  width: 80%;
+  max-width: 600rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.panel-header {
+  padding: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #eee;
+}
+
+.panel-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.close-btn {
+  font-size: 40rpx;
+  color: #999;
+  line-height: 1;
+  padding: 0 10rpx;
+}
+
+.user-list {
+  max-height: 600rpx;
+  overflow-y: auto;
+}
+
+.user-item {
+  display: flex;
+  padding: 24rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+  align-items: center;
+}
+
+.user-item:active {
+  background-color: #f9f9f9;
+}
+
+.user-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.user-role {
+  font-size: 24rpx;
+  color: #666;
+  display: block;
+} 

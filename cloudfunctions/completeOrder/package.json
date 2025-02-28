@@ -1,0 +1,14 @@
+{
+  "name": "completeOrder",
+  "version": "1.0.0",
+  "description": "标记订单为已完成并结算积分",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+} 

@@ -1,0 +1,98 @@
+<view class="container">
+  <view class="header">
+    <view class="search-bar">
+      <input 
+        type="text" 
+        value="{{searchKeyword}}" 
+        placeholder="{{searchPlaceholder}}" 
+        confirm-type="search" 
+        bindinput="onSearchInput" 
+        bindconfirm="onSearchConfirm"
+        focus="{{searchFocus}}"
+      />
+      <image class="search-icon" src="/images/icons/search.png" mode="aspectFit"></image>
+    </view>
+    
+    <view class="filter-tabs">
+      <view wx:for="{{tabs}}" wx:key="id"
+        class="tab {{currentTab === item.id ? 'active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="switchTab"
+      >
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+  
+  <!-- 调试信息区域 -->
+  <view class="debug-info" wx:if="{{isDevEnv && debugInfo}}">
+    <view class="debug-title">调试信息</view>
+    <view class="debug-content">{{debugInfo}}</view>
+  </view>
+  
+  <!-- 订单列表 -->
+  <scroll-view 
+    class="order-list" 
+    scroll-y="true" 
+    bindscrolltolower="onScrollToBottom"
+    refresher-enabled="true"
+    refresher-triggered="{{isRefreshing}}"
+    bindrefresherrefresh="refreshOrderList"
+  >
+    <!-- 加载中 -->
+    <view class="loading" wx:if="{{loading}}">
+      <view class="loading-icon"></view>
+      <text class="loading-text">加载中...</text>
+    </view>
+    
+    <!-- 空列表提示 -->
+    <view class="empty-list" wx:if="{{!loading && orders.length === 0}}">
+      <image class="empty-icon" src="/images/icons/empty-box.png" mode="aspectFit"></image>
+      <text class="empty-text">暂无订单</text>
+      <text class="empty-tip">{{currentTab === 'all' ? '当前没有任何订单~' : '没有该类型的订单~'}}</text>
+    </view>
+    
+    <!-- 订单项 -->
+    <block wx:if="{{!loading && orders.length > 0}}">
+      <view wx:for="{{orders}}" wx:key="_id" 
+        class="order-item" 
+        hover-class="order-item-hover"
+        data-id="{{item._id}}"
+        bindtap="onOrderTap"
+      >
+        <view class="order-header">
+          <text class="order-platform">{{item.platform === 'express' ? '快递' : item.platform === 'food' ? '餐食' : item.platform === 'shopping' ? '购物' : '其他'}}</text>
+          <text class="order-time">{{item.createTimeFormat}}</text>
+        </view>
+        
+        <view class="order-content">
+          <view class="order-info">
+            <text class="order-title">{{item.description}}</text>
+            <view class="order-address">
+              <text class="pickup">{{item.pickupLocation}}</text>
+              <text class="arrow">→</text>
+              <text class="dorm">{{item.dormitory}}</text>
+            </view>
+          </view>
+          <view class="order-reward">￥{{item.rewardText}}</view>
+        </view>
+        
+        <view class="order-footer">
+          <view class="publisher-info">
+            <image class="publisher-avatar" src="{{item.publisher.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+            <text class="publisher-name">{{item.publisher.nickName || '未知用户'}}</text>
+          </view>
+          
+          <view class="btn-accept" wx:if="{{item.status === 'pending'}}" catchtap="acceptOrder" data-id="{{item._id}}">接单</view>
+          <view class="order-status" wx:else>{{item.statusText}}</view>
+        </view>
+        
+        <!-- 测试标记 -->
+        <view class="test-mark" wx:if="{{item.test}}">测试</view>
+      </view>
+    </block>
+    
+    <!-- 加载更多/无更多 -->
+    <view class="no-more" wx:if="{{!loading && noMoreData && orders.length > 0}}">- 没有更多订单了 -</view>
+  </scroll-view>
+</view> 
